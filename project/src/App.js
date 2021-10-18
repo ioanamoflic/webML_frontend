@@ -1,10 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
-import { Button } from '@mui/material';
+import Login from './Pages/Login';
 
 function App() {
   return (
-    <Button>Login</Button>
+    <Login></Login>
+
+    //TODO: implement routing
   );
 }
 
