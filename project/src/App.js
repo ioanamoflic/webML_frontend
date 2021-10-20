@@ -10,7 +10,6 @@ import {
 } from "react-router-dom";
 function App() {
   return (
-    // <Login></Login>
     <Router>
     <div>
       <nav>
@@ -27,8 +26,7 @@ function App() {
         </ul>
       </nav>
 
-      {/* A <Switch> looks through its children <Route>s and
-          renders the first one that matches the current URL. */}
+
       <Switch>
         <Route path="/login">
           <Login />
@@ -42,8 +40,6 @@ function App() {
       </Switch>
     </div>
   </Router>
-
-    //TODO: implement routing
   );
 }
 
