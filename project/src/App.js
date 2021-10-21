@@ -9,14 +9,6 @@ import {
   Route,
 } from "react-router-dom";
 function App() {
-
-  const UserComponents = () => {
-    <AuthContext.Provider>
-        <Login/>
-        <TablePage></TablePage>
-        <ImagePage></ImagePage>
-    </AuthContext.Provider>
-}
   return (
     <Router>
       <Switch>

@@ -3,18 +3,17 @@ import { Component } from 'react';
 import loginImg from '../Photos/LoginPhoto.gif';
 
 class Login extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
       email: null,
       password: null, 
     };
-
     this.buttonClicked = this.buttonClicked.bind(this);
     this.onEmailChange = this.onEmailChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
   }
-
 
   onEmailChange(event) {
     this.setState({ email: event.target.value })
