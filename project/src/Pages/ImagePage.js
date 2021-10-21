@@ -23,25 +23,22 @@ class ImagePage extends Component {
         return (
             <div>
                 <div>
-                    <div style={{display:"flex",justifyContent:'flex-end'}}>
-                 
-                        <Button 
-                            style={{marginRight:20}}
+                    <div style={{ display: "flex", justifyContent: 'flex-end' }}>
+                        <Button
+                            style={{ marginRight: '10%', marginTop: '5%'}}
                             variant="contained"
                             component="label"
                         >
                             Upload
                             <input hidden type="file" onChange={this.onImageChange} />
                         </Button>
-                        </div>
-                        <div style={{display:"flex",justifyContent:"center"}}>
-                        <img 
-                        style={{height:500,width:500, border:"2px solid black"}}
-                        src={this.state.image} />
-                        </div>
-                        
+                    </div>
 
-           
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                        <img
+                            style={{ height: 500, width: 500, border: "2px solid black" }}
+                            src={this.state.image} />
+                    </div>
                 </div>
             </div>
         );
