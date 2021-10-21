@@ -30,16 +30,15 @@ class Login extends Component {
 
   render() {
     return (
-
       <Box>
         <Grid container spacing={1}>
           <Grid item xs={7} >
-            <Paper elevation="0">
+            <Paper elevation="0" >
               <img src={loginImg} alt="Robot" style={{ width: '50%', height: 'auto' }} />
             </Paper>
           </Grid>
           <Grid item xs={5}>
-            <Paper elevation="0">
+            <Paper elevation="0" sx={{display: 'flex', flexDirection:'column'}}>
               <TextField
                 id="outlined-input"
                 label="Email ID"
@@ -61,7 +60,7 @@ class Login extends Component {
             </Paper>
           </Grid>
         </Grid>
-      </Box>
+        </Box>
     );
   }
 }
