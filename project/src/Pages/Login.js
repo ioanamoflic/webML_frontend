@@ -38,7 +38,7 @@ class Login extends Component {
             </Paper>
           </Grid>
           <Grid item xs={5}>
-            <Paper elevation="0" sx={{display: 'flex', flexDirection:'column'}}>
+            <Paper elevation="0" sx={{display: 'grid', flexDirection:'column', marginLeft:'-17%',  marginTop:'17%', position:'absolute'}}>
               <TextField
                 id="outlined-input"
                 label="Email ID"

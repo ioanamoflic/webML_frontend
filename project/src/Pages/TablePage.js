@@ -59,7 +59,7 @@ export default function TablePage() {
 
     return (
         <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <Table sx={{backgroundColor: '#D3F0F2', marginTop:'10%', marginLeft: 'auto', marginRight: 'auto', width: '60%', marginBottom:'50%', border:'1px solid black'}} aria-label="simple table">
                 <TableHead>
                     <TableRow>
                         <TableCell>
