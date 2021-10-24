@@ -37,7 +37,8 @@ class ImagePage extends Component {
                     <div style={{ display: "flex", justifyContent: "center" }}>
                         <img
                             style={{ height: 500, width: 500, border: "2px solid black" }}
-                            src={this.state.image} />
+                            src={this.state.image} 
+                            alt=""/>
                     </div>
                 </div>
             </div>
