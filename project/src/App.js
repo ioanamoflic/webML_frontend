@@ -4,6 +4,7 @@ import Login from './Pages/Login';
 import TablePage from './Pages/TablePage';
 import ImagePage from './Pages/ImagePage'
 import AuthContext from './Pages/AuthContext'
+import Calendar from './components/DatePicker/calendar'
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="/" component={Login} />
           <Route path="/table" component={TablePage} />
           <Route path="/upload" component={ImagePage} />
+          <Route path="/calendar" component={Calendar} />
         </Switch>
       </Router>
     </AuthContext.Provider>
