@@ -6,6 +6,10 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import CurrentDate from "./currentDate";
+import ButtonGroupComponent from "./buttongroup";
+import ChosenDates from "./chosenDates";
+import Stack from '@mui/material/Stack';
 
 const CALENDAR = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
 class Calendar extends Component {
@@ -15,10 +19,10 @@ class Calendar extends Component {
             image: null,
             days: new Array(CALENDAR.length).fill().map((_, i) => ({ style: { color: 'white' } })),
         };
-        
+
         this.handleCellClick = this.handleCellClick.bind(this);
     }
-    
+
     static startDate = null;
     static endDate = null;
 
@@ -30,6 +34,9 @@ class Calendar extends Component {
             this.startDate = day;
             this.endDate = null;
         } else {
+            if (this.startDate > day) {
+                [this.startDate, day] = [day, this.startDate];
+            }
             arr = this.state.days;
             arr[this.startDate - 1].style = styles.startCellCircle;
             for (let index = this.startDate; index < day - 1; index++) {
@@ -78,24 +85,40 @@ class Calendar extends Component {
     render() {
         return (
             <div style={styles.calendarClass}>
-                <TableContainer>
-                    <Table>
-                        {this.getHead()}
-                        {this.getBody()}
-                    </Table>
-                </TableContainer>
+                <ChosenDates style={{
+                    width: '430px'
+                }} />
+                <div style={styles.insideCalendar}>
+                    <CurrentDate />
+                    <TableContainer>
+                        <Table>
+                            {this.getHead()}
+                            {this.getBody()}
+                        </Table>
+                    </TableContainer>
+                    <div style={styles.buttonGroup}>
+                        <ButtonGroupComponent />
+                    </div>
+                </div>
             </div>
         );
     }
 }
 export default Calendar;
 
+//styles.css?
 const styles = {
     calendarClass: {
-        background: 'linear-gradient(135deg, #4290c0,#4795cd, #5087d0, #6b52d0)',
         marginLeft: 200,
         marginTop: 100,
-        width: "400px"
+        width: 400,
+    },
+    insideCalendar: {
+        background: 'linear-gradient(135deg, #4290c0,#4795cd, #5087d0, #6b52d0)',
+        borderBottomLeftRadius: "15px",
+        borderBottomRightRadius: "15px",
+        width:"380px",
+        marginLeft:"10px"
     },
     circle: {
         width: "320px",
@@ -122,5 +145,10 @@ const styles = {
     betweenCellCircle: {
         color: 'white',
         background: 'linear-gradient(#D16ADF,#4795cd, #31E6E6, #6b52d0)'
+    },
+    buttonGroup: {
+        marginLeft: "60px", 
+        marginTop: "10px",
+        marginBottom: "20px" 
     }
 }

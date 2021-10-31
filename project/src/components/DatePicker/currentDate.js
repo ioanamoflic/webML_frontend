@@ -27,7 +27,7 @@ class CurrentDate extends Component {
         const open = Boolean(this.state.anchorEl)
         return (
             <Stack direction="row">
-                <Paper elevation={0} style={{ margin: 10 }} >
+                <Paper elevation={0} style={{ margin: 10}} >
                     15 AUG
                 </Paper>
                 <Paper elevation={0} >
