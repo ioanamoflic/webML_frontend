@@ -8,17 +8,48 @@ class ChosenDates extends Component {
 
     render() {
         return (
-            <Stack direction="row" style={{ marginBottom: "5px" }}>
-                <Button disabled="true" variant="outlined" style={styles.leftButton}>
-                    <div style={styles.column}>
-                        <div style={styles.start}>Start date </div>
-                        <div style={styles.leftDate}>27 Aug 2018 </div>
+            <Stack direction="row" style={{ marginBottom: this.props.marginBottom }}>
+                <Button disabled="true" variant="outlined" 
+                style={{
+                    width: this.props.width,
+                    height: this.props.height,
+                    background: this.props.background,
+                    borderTopLeftRadius: this.props.radius,
+                    borderBottomLeftRadius: this.props.radius,
+                    borderTopRightRadius: "0px",
+                    borderBottomRightRadius: "0px",
+                    borderColor: this.props.borderColor
+                }}>
+                    <div style={{textAlign: this.props.textAlign}}>
+                        Start date
+                        <div
+                            style={{
+                                color: this.props.leftDateColor,
+                                fontWeight: this.props.fontWeight,
+                                fontSize: this.props.fontSize
+                            }}>{this.props.startDate}</div>
                     </div>
                 </Button>
-                <Button disabled="true" variant="outlined" style={styles.rightButton}>
-                    <div style={styles.column}>
-                        <div style={styles.end}>End date </div>
-                        <div style={styles.rightDate}>31 Aug 2018 </div>
+                <Button disabled="true" variant="outlined"
+                style={{
+                    width: this.props.width,
+                    height: this.props.height,
+                    background: this.props.background,
+                    borderTopRightRadius: this.props.radius,
+                    borderBottomRightRadius: this.props.radius,
+                    borderTopLeftRadius: "0px",
+                    borderBottomLeftRadius: "0px",
+                    borderColor: this.props.borderColor
+                }}>
+                    <div style={{textAlign: this.props.textAlign}}>
+                        End date
+                        <div
+                            style={{
+                                color: this.props.rightDateColor,
+                                fontWeight: this.props.fontWeight,
+                                fontSize: this.props.fontSize
+                            }}>
+                            {this.props.endDate}</div>
                     </div>
                 </Button>
             </Stack>
@@ -27,57 +58,3 @@ class ChosenDates extends Component {
 }
 
 export default ChosenDates;
-
-const styles = {
-
-    leftButton: {
-        borderTopLeftRadius: "10px",
-        borderBottomLeftRadius: "10px",
-        borderTopRightRadius: "0px",
-        borderBottomRightRadius: "0px",
-        width: "220px",
-        height: "70px",
-        background: "white",
-        borderColor: "#BBC0BE",
-        textAlign: "left",
-        flexDirection: "column"
-    },
-    rightButton: {
-        borderTopRightRadius: "10px",
-        borderBottomRightRadius: "10px",
-        borderTopLeftRadius: "0px",
-        borderBottomLeftRadius: "0px",
-        width: "220px",
-        height: "70px",
-        background: "white",
-        borderColor: "#BBC0BE",
-        textAlign: "left",
-        flexDirection: "column"
-    },
-    start: {
-        fontSize: "10px",
-        textAlign: "left",
-        color: "#BBC0BE"
-    },
-    end:{
-        fontSize: "10px", 
-        color: "#BBC0BE" 
-    },
-    leftDate:{
-        fontSize: "18px",
-        textAlign: "left", 
-        color: "#ae94e3", 
-        fontStyle: "bold", 
-        fontWeight: "bold" 
-    },
-    rightDate:{
-        fontSize: "18px",
-        color: "#40a2db",
-        fontStyle: "bold",
-        fontWeight: "bold"
-    },
-    column: {
-        textAlign: "left",
-        flexDirection: 'column' 
-    }
-}
