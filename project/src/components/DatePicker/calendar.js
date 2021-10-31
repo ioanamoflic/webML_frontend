@@ -12,13 +12,36 @@ class Calendar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            image: null
+            image: null,
+            days: new Array(CALENDAR.length).fill().map((_, i) => ({ style: { color: 'white' } })),
         };
+        
         this.handleCellClick = this.handleCellClick.bind(this);
     }
+    
+    static startDate = null;
+    static endDate = null;
 
-    handleCellClick = (e) => {
-        //TODO: add circle to chosen date when the cell is pressed (see lab example)
+    handleCellClick = (day) => {
+        var arr;
+        if ((this.endDate !== null && this.endDate !== undefined) || this.startDate === undefined) {
+            arr = new Array(CALENDAR.length).fill().map((_, i) => ({ style: { color: 'white' } }))
+            arr[day - 1].style = styles.cellCircle;
+            this.startDate = day;
+            this.endDate = null;
+        } else {
+            arr = this.state.days;
+            arr[this.startDate - 1].style = styles.startCellCircle;
+            for (let index = this.startDate; index < day - 1; index++) {
+                arr[index].style = styles.betweenCellCircle;
+            }
+            arr[day - 1].style = styles.endCellCircle;
+            this.endDate = day;
+        }
+
+        this.setState({
+            days: arr
+        });
     }
 
     getHead = () => {
@@ -37,10 +60,9 @@ class Calendar extends Component {
         );
     }
     getBody = () => {
-
         const calendar = [];
         const preprocCal = CALENDAR.map(day => {
-            return <TableCell style={{ color: "white" }} onClick={this.handleCellClick}><b>{day}</b></TableCell>
+            return <TableCell style={this.state.days[day - 1].style} onClick={() => this.handleCellClick(day)}><b>{day}</b></TableCell>
         });
 
         for (let index = 0; index < preprocCal.length / 7; index++) {
@@ -51,9 +73,7 @@ class Calendar extends Component {
             <TableBody>
                 {calendar}
             </TableBody>
-        )
-
-            ;
+        );
     }
     render() {
         return (
@@ -81,5 +101,26 @@ const styles = {
         width: "320px",
         padding: "10px",
         border: "5px solid gray",
+    },
+    startCellCircle: {
+        color: 'white',
+        background: 'linear-gradient(#D16ADF,#4795cd, #31E6E6, #6b52d0)',
+        borderTopLeftRadius: "27px",
+        borderBottomLeftRadius: "27px"
+    },
+    cellCircle: {
+        color: 'white',
+        background: 'linear-gradient(#D16ADF,#4795cd, #31E6E6, #6b52d0)',
+        borderRadius: "27px"
+    },
+    endCellCircle: {
+        color: 'white',
+        background: 'linear-gradient(#D16ADF,#4795cd, #31E6E6, #6b52d0)',
+        borderTopRightRadius: "27px",
+        borderBottomRightRadius: "27px"
+    },
+    betweenCellCircle: {
+        color: 'white',
+        background: 'linear-gradient(#D16ADF,#4795cd, #31E6E6, #6b52d0)'
     }
 }
