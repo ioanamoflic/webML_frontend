@@ -17,7 +17,7 @@ class ButtonGroupComponent extends Component {
 
     render() {
         return (
-            <Stack direction="row" spacing={2}>
+            <Stack direction="row" spacing={2} style={{margin: 15}}>
                 <CustomButton innerText="CANCEL" backgroundColor="white" color="gray" onClick={this.onclickCancel} borderRadius='16px' width="130px"></CustomButton>
                 <CustomButton innerText="DONE" backgroundColor="#f355e7" onClick={this.onclickDone} borderRadius='16px' width="130px"></CustomButton>
             </Stack>

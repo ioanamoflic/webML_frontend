@@ -6,10 +6,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import CurrentDate from "./currentDate";
-import ButtonGroupComponent from "./buttongroup";
-import ChosenDates from "./chosenDates";
-import Stack from '@mui/material/Stack';
+import { borderBottom } from "@mui/system";
 
 const CALENDAR = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
 class Calendar extends Component {
@@ -17,7 +14,7 @@ class Calendar extends Component {
         super(props);
         this.state = {
             image: null,
-            days: new Array(CALENDAR.length).fill().map((_, i) => ({ style: { color: 'white' } })),
+            days: new Array(CALENDAR.length).fill().map((_, i) => ({ style: { color: 'white', borderBottom: 'none'} })),
         };
 
         this.handleCellClick = this.handleCellClick.bind(this);
@@ -29,7 +26,7 @@ class Calendar extends Component {
     handleCellClick = (day) => {
         var arr;
         if ((this.endDate !== null && this.endDate !== undefined) || this.startDate === undefined) {
-            arr = new Array(CALENDAR.length).fill().map((_, i) => ({ style: { color: 'white' } }))
+            arr = new Array(CALENDAR.length).fill().map((_, i) => ({ style: { color: 'white', borderBottom: 'none' } }))
             arr[day - 1].style = styles.cellCircle;
             this.startDate = day;
             this.endDate = null;
@@ -55,13 +52,13 @@ class Calendar extends Component {
         return (
             <TableHead>
                 <TableRow>
-                    <TableCell style={{ color: "white" }}>SU</TableCell>
-                    <TableCell style={{ color: "white" }}>MO</TableCell>
-                    <TableCell style={{ color: "white" }}>TU</TableCell>
-                    <TableCell style={{ color: "white" }}>WE</TableCell>
-                    <TableCell style={{ color: "white" }}>TH</TableCell>
-                    <TableCell style={{ color: "white" }}>FR</TableCell>
-                    <TableCell style={{ color: "white" }}>SA</TableCell>
+                    <TableCell style={{ color: "white", borderBottom: 'none' }}>SU</TableCell>
+                    <TableCell style={{ color: "white", borderBottom: 'none' }}>MO</TableCell>
+                    <TableCell style={{ color: "white", borderBottom: 'none' }}>TU</TableCell>
+                    <TableCell style={{ color: "white", borderBottom: 'none' }}>WE</TableCell>
+                    <TableCell style={{ color: "white", borderBottom: 'none' }}>TH</TableCell>
+                    <TableCell style={{ color: "white", borderBottom: 'none' }}>FR</TableCell>
+                    <TableCell style={{ color: "white", borderBottom: 'none' }}>SA</TableCell>
                 </TableRow>
             </TableHead>
         );
@@ -84,71 +81,41 @@ class Calendar extends Component {
     }
     render() {
         return (
-            <div style={styles.calendarClass}>
-                <ChosenDates style={{
-                    width: '430px'
-                }} />
-                <div style={styles.insideCalendar}>
-                    <CurrentDate />
-                    <TableContainer>
-                        <Table>
-                            {this.getHead()}
-                            {this.getBody()}
-                        </Table>
-                    </TableContainer>
-                    <div style={styles.buttonGroup}>
-                        <ButtonGroupComponent />
-                    </div>
-                </div>
-            </div>
+            <TableContainer>
+                <Table>
+                    {this.getHead()}
+                    {this.getBody()}
+                </Table>
+            </TableContainer>
         );
     }
 }
 export default Calendar;
 
-//styles.css?
 const styles = {
-    calendarClass: {
-        marginLeft: 200,
-        marginTop: 100,
-        width: 400,
-    },
-    insideCalendar: {
-        background: 'linear-gradient(135deg, #4290c0,#4795cd, #5087d0, #6b52d0)',
-        borderBottomLeftRadius: "15px",
-        borderBottomRightRadius: "15px",
-        width:"380px",
-        marginLeft:"10px"
-    },
-    circle: {
-        width: "320px",
-        padding: "10px",
-        border: "5px solid gray",
-    },
     startCellCircle: {
         color: 'white',
-        background: 'linear-gradient(#D16ADF,#4795cd, #31E6E6, #6b52d0)',
+        background: 'linear-gradient(#a450e4, #855fea, #855fea)',
         borderTopLeftRadius: "27px",
-        borderBottomLeftRadius: "27px"
+        borderBottomLeftRadius: "27px",
+        borderBottom: 'none',
     },
     cellCircle: {
         color: 'white',
-        background: 'linear-gradient(#D16ADF,#4795cd, #31E6E6, #6b52d0)',
-        borderRadius: "27px"
+        backgroundColor: '#71cceb',
+        borderRadius: '50%',
+        borderBottom: 'none',
     },
     endCellCircle: {
         color: 'white',
-        background: 'linear-gradient(#D16ADF,#4795cd, #31E6E6, #6b52d0)',
+        background: 'linear-gradient(90deg, #855fea, #855fea, #4a84f8)',
         borderTopRightRadius: "27px",
-        borderBottomRightRadius: "27px"
+        borderBottomRightRadius: "27px",
+        borderBottom: 'none'
     },
     betweenCellCircle: {
         color: 'white',
-        background: 'linear-gradient(#D16ADF,#4795cd, #31E6E6, #6b52d0)'
+        background: 'linear-gradient(#a450e4, #855fea, #855fea)',
+        borderBottom: 'none'
     },
-    buttonGroup: {
-        marginLeft: "60px", 
-        marginTop: "10px",
-        marginBottom: "20px" 
-    }
 }
