@@ -52,13 +52,13 @@ class Calendar extends Component {
         return (
             <TableHead>
                 <TableRow>
-                    <TableCell style={{ color: "white", borderBottom: 'none' }}>SU</TableCell>
-                    <TableCell style={{ color: "white", borderBottom: 'none' }}>MO</TableCell>
-                    <TableCell style={{ color: "white", borderBottom: 'none' }}>TU</TableCell>
-                    <TableCell style={{ color: "white", borderBottom: 'none' }}>WE</TableCell>
-                    <TableCell style={{ color: "white", borderBottom: 'none' }}>TH</TableCell>
-                    <TableCell style={{ color: "white", borderBottom: 'none' }}>FR</TableCell>
-                    <TableCell style={{ color: "white", borderBottom: 'none' }}>SA</TableCell>
+                    <TableCell style={{ color: "white", borderBottom: 'none', fontWeight: 'bold' }}>SU</TableCell>
+                    <TableCell style={{ color: "white", borderBottom: 'none', fontWeight: 'bold' }}>MO</TableCell>
+                    <TableCell style={{ color: "white", borderBottom: 'none', fontWeight: 'bold' }}>TU</TableCell>
+                    <TableCell style={{ color: "white", borderBottom: 'none', fontWeight: 'bold' }}>WE</TableCell>
+                    <TableCell style={{ color: "white", borderBottom: 'none', fontWeight: 'bold' }}>TH</TableCell>
+                    <TableCell style={{ color: "white", borderBottom: 'none', fontWeight: 'bold' }}>FR</TableCell>
+                    <TableCell style={{ color: "white", borderBottom: 'none', fontWeight: 'bold' }}>SA</TableCell>
                 </TableRow>
             </TableHead>
         );

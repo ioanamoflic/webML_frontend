@@ -12,7 +12,20 @@ class DatePicker extends Component {
         return (
             <Stack style={styles.calendarClass}>
                 <Paper elevation={0}>
-                    <ChosenDates />
+                <ChosenDates
+                    startDate="27 AUG 2018"
+                    endDate="31 AUG 2018"
+                    background="white"
+                    width="220px"
+                    height="70px"
+                    marginBottom="5px"
+                    leftDateColor="#ae94e3"
+                    rightDateColor="#40a2db"
+                    fontSize="20px"
+                    radius="10px"
+                    textAlign="left"
+                    >
+                </ChosenDates>
                 </Paper>
                 <Paper elevation={0}>
                     <CurrentDate />

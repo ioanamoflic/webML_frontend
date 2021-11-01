@@ -16,16 +16,16 @@ class ChosenDates extends Component {
                     background: this.props.background,
                     borderTopLeftRadius: this.props.radius,
                     borderBottomLeftRadius: this.props.radius,
-                    borderTopRightRadius: "0px",
-                    borderBottomRightRadius: "0px",
+                    borderTopRightRadius: 0,
+                    borderBottomRightRadius: 0,
                     borderColor: this.props.borderColor
                 }}>
-                    <div style={{textAlign: this.props.textAlign}}>
+                    <div style={{textAlign: this.props.textAlign, fontSize: 10}}>
                         Start date
                         <div
                             style={{
                                 color: this.props.leftDateColor,
-                                fontWeight: this.props.fontWeight,
+                                fontWeight: 'bold',
                                 fontSize: this.props.fontSize
                             }}>{this.props.startDate}</div>
                     </div>
@@ -37,16 +37,16 @@ class ChosenDates extends Component {
                     background: this.props.background,
                     borderTopRightRadius: this.props.radius,
                     borderBottomRightRadius: this.props.radius,
-                    borderTopLeftRadius: "0px",
-                    borderBottomLeftRadius: "0px",
+                    borderTopLeftRadius: 0,
+                    borderBottomLeftRadius: 0,
                     borderColor: this.props.borderColor
                 }}>
-                    <div style={{textAlign: this.props.textAlign}}>
+                    <div style={{textAlign: this.props.textAlign, fontSize: 10}}>
                         End date
                         <div
                             style={{
                                 color: this.props.rightDateColor,
-                                fontWeight: this.props.fontWeight,
+                                fontWeight: 'bold',
                                 fontSize: this.props.fontSize
                             }}>
                             {this.props.endDate}</div>
