@@ -3,13 +3,13 @@ import React,{ Component } from 'react';
 import loginImg from '../Photos/LoginPhoto.gif';
 import AuthContext from './AuthContext';
 import { useContext } from 'react';
-export default function LoginPage(props) {
+export default function LoginPage() {
   
   const value = useContext(AuthContext);
   const [email, setEmail] = React.useState([]);
   const [password, setPassword] = React.useState([]);
 
-  const onEmailChange=event=> {
+  const onEmailChange=event => {
     setEmail(event.target.value)
   }
 

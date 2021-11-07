@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { ChangeEvent, Component } from "react";
 import Button from "@mui/material/Button"
 
 
@@ -11,15 +11,16 @@ export default function ImagePage() {
 
         this.onImageChange = this.onImageChange.bind(this);
     }*/
-    const [image, setImage] = React.useState([]);
+    const [image, setImage] = React.useState<string|undefined>(undefined);
     
-    const onImageChange = event => {
-        if (event.target.files && event.target.files[0]) {
+    const onImageChange = (event: ChangeEvent<HTMLInputElement>) => {
+       if (event&&event.target.files && event.target.files[0]) {
             let img = event.target.files[0];
             
-            setImage(URL.createObjectURL(img))
+            setImage("dada")
 
         }
+
     };
 
 
