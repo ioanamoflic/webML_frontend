@@ -1,0 +1,21 @@
+version: '2'
+services: 
+  api:
+    image: node
+    container_name: 'backend'
+    build: .
+    command: npm start
+    volumes:
+      - .:/fsd_project/backend/
+      - /fsd_project/backend/node_modules
+    ports:
+      - '3000:3000'  
+  postgres:
+    container_name: 'postgres'
+    image: postgres:13.1
+    ports: 
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+
