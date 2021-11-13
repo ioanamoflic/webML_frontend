@@ -1,6 +1,10 @@
-import {getRepository} from "typeorm";
-import {NextFunction, Request, Response} from "express";
-import {User} from "../entity/User";
+import { getRepository } from "typeorm";
+import { NextFunction, Request, Response } from "express";
+import { User } from "../entity/User";
+import * as bcrypt from "bcryptjs";
+import * as jwt from "jsonwebtoken";
+require('dotenv').config();
+const jwtSecret = process.env.JWT_SECRET;
 
 export class UserController {
 
@@ -29,11 +33,64 @@ export class UserController {
         updatedUser.email = request.body.email;
         updatedUser.password = request.body.password;
         return await this.userRepository.save(updatedUser);
+    }
 
-        //throw new Error("error");
+    async register(request: Request, response: Response, next: NextFunction) {
+        try {
+            const { username, email, password } = request.body;
 
-        //response.status(500).send("56876987");
+            if (!(email && password && username)) {
+                 response.status(400).send("All input is required");
+                 return;
+            }
+
+            const userExists = await this.userRepository.findOne({ where: { email: email } });
+
+
+            if (userExists) {
+                 response.status(409).send("User Already Exist. Please Login");
+                 return;
+            }
+
+            const encryptedPassword = await bcrypt.hash(password, 10);
+
+            const user = {
+                username: username,
+                email: email.toLowerCase(),
+                password: encryptedPassword,
+            };
+
+            const newUser = this.userRepository.save(user);
+            const token = jwt.sign({ email, password }, jwtSecret, { expiresIn: 5000 });
+
+             response.status(201).send({token: token });
+        } catch (err) {
+            console.log(err);
+        }
 
     }
 
-}
+    async login(request: Request, response: Response, next: NextFunction) {
+        try {
+            const { email, password } = request.body;
+
+            if (!(email && password)) {
+                response.status(400).send("All input is required");
+                return;
+            }
+
+            const userExists = await this.userRepository.findOne({ where: { email: email } });
+
+            if (userExists && (await bcrypt.compare(password, userExists.password))) {
+                const token = jwt.sign({ email, password }, jwtSecret, { expiresIn: 5000 });
+                response.status(201).send({token: token });
+                return;
+            }
+
+            response.status(400).send("Invalid Credentials");
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+} 
