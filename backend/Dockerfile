@@ -1,5 +1,10 @@
-FROM node:latest
-WORKDIR /fsd_project/backend
-COPY package.json .
-RUN npm install --quiet
+FROM node:14.16
+
+RUN mkdir /app
+WORKDIR /app
+
+COPY package.json /app
 COPY . .
+
+RUN node -v
+RUN npm install

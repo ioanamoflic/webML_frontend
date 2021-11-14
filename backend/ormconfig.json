@@ -1,8 +1,8 @@
 { 
    "type": "postgres", 
-   "host": "localhost", 
+   "host": "backend_database_1", 
    "port": 5432, 
-   "username": "mirunadaian", 
+   "username": "postgres", 
    "password": "", 
    "database": "fsd_database", 
    "synchronize": true, 
