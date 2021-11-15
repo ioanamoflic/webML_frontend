@@ -17,11 +17,12 @@ services:
   database:
     image: postgres:9.6-alpine
     ports:
-      - 5432:5432
+      - 6000:5432
     environment:
       POSTGRES_DB: fsd_database
       POSTGRES_USERNAME: postgres
       POSTGRES_PASSWORD: 
+      POSTGRES_HOST_AUTH_METHOD: trust
 
 volumes:
   databse-data: {}
