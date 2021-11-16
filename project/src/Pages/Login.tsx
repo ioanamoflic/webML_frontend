@@ -1,27 +1,28 @@
 import { Button, TextField, Link, Grid, Paper, Box } from '@mui/material';
-import React,{ Component } from 'react';
+import React,{ Component, useEffect } from 'react';
 import loginImg from '../Photos/LoginPhoto.gif';
 import AuthContext from './AuthContext';
 import { useContext } from 'react';
+
 export default function LoginPage() {
   
   const value = useContext(AuthContext);
   const [email, setEmail] = React.useState([]);
   const [password, setPassword] = React.useState([]);
 
-  const onEmailChange=event => {
-    setEmail(event.target.value)
-  }
+  // function onEmailChange(event) {
+  //   setEmail(event.target.value)
+  // }
 
-  const onPasswordChange=event=> {
-    setPassword(event.target.value)
-  }
+  // function onPasswordChange(event) {
+  //   setPassword(event.target.value)
+  // }
 
-  const buttonClicked = ()=> {
-    props.history.push('/table');
-    value.setAuth(true);
-  }
 
+  // const buttonClicked = ()=> {
+  //   props.history.push('/table');
+  //   value.setAuth(true);
+  // }
 
     return (
       <Box>
@@ -38,16 +39,16 @@ export default function LoginPage() {
                 label="Email ID"
                 type="text"
                 value={email}
-                onChange={onEmailChange}
+                // onChange={(e) => onEmailChange(e)}
               />&nbsp;
               <TextField
                 id="outlined-password-input"
                 label="Password"
                 type="password"
                 value={password}
-                onChange={onPasswordChange}
+                // onChange={(e) => onPasswordChange(e)}
               />&nbsp;
-              <Button variant="contained" onClick={buttonClicked}>Login</Button>&nbsp;
+              <Button variant="contained">Login</Button>&nbsp;
               <Link href="#" underline="none">Forgot Username/Password?</Link>
             </Paper>
           </Grid>
