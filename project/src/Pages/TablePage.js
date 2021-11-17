@@ -8,7 +8,6 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
 import{ Component, useEffect } from 'react';
-import useAuth from "../api/hooks/useAuth"
 
 function createData(name, size, result, link) {
     return {
@@ -58,11 +57,6 @@ export default function TablePage() {
       };
 
     const isSelected = (name) => selected.indexOf(name) !== -1;
-
-    useEffect(() => {
-        useAuth.login("ioanamoflic@yahoo.com", "parola");
-        //useAuth.logout();
-    });
 
     return (
         <TableContainer component={Paper}>

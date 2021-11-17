@@ -1,6 +1,6 @@
 import './App.css';
 import { useState } from 'react';
-import Login from './Pages/Login';
+import LoginPage from './Pages/LoginPage';
 import TablePage from './Pages/TablePage';
 import ImagePage from './Pages/ImagePage'
 import AuthContext from './Pages/AuthContext'
@@ -20,7 +20,7 @@ function App() {
     <AuthContext.Provider value={{isAuth, setAuth}}>
       <Router>
         <Switch>
-          <Route exact path="/" component={Login} />
+          <Route exact path="/" component={LoginPage} />
           <Route path="/table" component={TablePage} />
           <Route path="/upload" component={ImagePage} />
           <Route path="/datePicker" component={DatePicker} />

@@ -1,27 +1,30 @@
 import { Button, TextField, Link, Grid, Paper, Box } from '@mui/material';
-import React,{ Component } from 'react';
+import React from 'react';
 import loginImg from '../Photos/LoginPhoto.gif';
 import AuthContext from './AuthContext';
 import { useContext } from 'react';
-export default function LoginPage(props) {
+import useAuth from "../api/hooks/useAuth"
+
+export default function LoginPage(props: any) {
   
   const value = useContext(AuthContext);
-  const [email, setEmail] = React.useState([]);
-  const [password, setPassword] = React.useState([]);
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
-  const onEmailChange=event=> {
-    setEmail(event.target.value)
+   const onEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail((event.target as any).value)
   }
 
-  const onPasswordChange=event=> {
-    setPassword(event.target.value)
+  const onPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword((event.target as any).value)
   }
 
-  const buttonClicked = ()=> {
+  const buttonClicked = async ()=> {
+    await useAuth.login(email, password);
     props.history.push('/table');
-    value.setAuth(true);
+    (value as any).setAuth(true);
+    
   }
-
 
     return (
       <Box>

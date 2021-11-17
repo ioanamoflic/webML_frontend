@@ -33,7 +33,7 @@ axiosInstance.interceptors.response.use(
     (response) => response,
     async (error) => {
         const config = error.config;
-        if (error.response.status === 401 && !config._retry) {
+        if (error.response.status === 400 && !config._retry) {
             config._retry = true;
             localStorage.setItem("token", await refreshAccessToken());
 
