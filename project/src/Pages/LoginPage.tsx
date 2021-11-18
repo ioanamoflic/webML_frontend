@@ -8,15 +8,15 @@ import useAuth from "../api/hooks/useAuth"
 export default function LoginPage(props: any) {
   
   const value = useContext(AuthContext);
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [email, setEmail] = React.useState<string>("");
+  const [password, setPassword] = React.useState<string>("");
 
    const onEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail((event.target as any).value)
+    setEmail((event.target).value)
   }
 
   const onPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword((event.target as any).value)
+    setPassword((event.target).value)
   }
 
   const buttonClicked = async ()=> {

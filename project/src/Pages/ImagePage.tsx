@@ -1,5 +1,6 @@
 import React, { ChangeEvent, Component } from "react";
 import Button from "@mui/material/Button"
+import { isJSDocNullableType, __String } from "typescript";
 
 
 export default function ImagePage() {
@@ -11,13 +12,13 @@ export default function ImagePage() {
 
         this.onImageChange = this.onImageChange.bind(this);
     }*/
-    const [image, setImage] = React.useState<string|undefined>(undefined);
+    const [image, setImage] = React.useState<string>("");
     
     const onImageChange = (event: ChangeEvent<HTMLInputElement>) => {
        if (event&&event.target.files && event.target.files[0]) {
             let img = event.target.files[0];
             
-            setImage("dada")
+            setImage(URL.createObjectURL(img))
 
         }
 
