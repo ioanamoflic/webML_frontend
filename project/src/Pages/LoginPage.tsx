@@ -6,8 +6,7 @@ import { useContext } from 'react';
 import useAuth from "../api/hooks/useAuth"
 
 export default function LoginPage(props: any) {
-  
-  const value = useContext(AuthContext);
+  const authCtx = useContext(AuthContext);
   const [email, setEmail] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
 
@@ -20,10 +19,17 @@ export default function LoginPage(props: any) {
   }
 
   const buttonClicked = async ()=> {
-    await useAuth.login(email, password);
-    props.history.push('/table');
-    (value as any).setAuth(true);
-    
+    useAuth.login(email,password).then(response=>{
+      if (response.token) {
+        console.log(response.token);
+        localStorage.setItem("token", response.token);
+        props.history.push('/table');
+        props.setAuth(true);
+    }
+    }).catch(error=>{
+      alert("Eroare");
+    })
+
   }
 
     return (

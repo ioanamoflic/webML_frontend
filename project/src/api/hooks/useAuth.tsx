@@ -1,13 +1,9 @@
 import { AxiosError } from "axios";
 import axiosInstance from "../instance";
-
-export default {
+const loginService = {
     async login(email: string, password: string): Promise<any> {
         try {
-            const resp = await axiosInstance.post("/users/login", {email, password});
-            if (resp.data.token) {
-                localStorage.setItem("token", resp.data.token);
-            }
+            const resp = await axiosInstance.post("/users/login", { email, password });
             return resp.data;
         } catch (error) {
             const err = error as AxiosError
@@ -15,12 +11,28 @@ export default {
                 console.log(err.response.status)
                 console.log(err.response.data)
             }
-            return null;
+            throw error;
         }
     },
     logout() {
         localStorage.removeItem("token");
+    },
+    async getUserInfo(){
+        try {
+            const resp = await axiosInstance.get("/users/info");
+            return resp.data;
+        } catch (error) {
+            const err = error as AxiosError
+            if (err.response) {
+                console.log(err.response.status)
+                console.log(err.response.data)
+            }
+            throw error;
+        }
     }
 }
+
+
+export default loginService
 
 

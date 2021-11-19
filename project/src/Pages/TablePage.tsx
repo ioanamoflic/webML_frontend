@@ -7,7 +7,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
-import{ Component, useEffect } from 'react';
+import{ Component, useContext, useEffect } from 'react';
+import AuthContext from './AuthContext';
 
 function createData(name: string, size: string, result: string, link: string) {
     return {
@@ -27,7 +28,8 @@ const rows = [
 
 export default function TablePage() {
     const [selected, setSelected] = React.useState<string[]>([""]);
-
+    const authCtx = useContext(AuthContext);
+    console.log("logged in"+authCtx);
     const selectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.checked) {
             const newSelecteds = rows.map((n) => n.name);
