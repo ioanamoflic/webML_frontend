@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -10,9 +10,9 @@ import { styles } from './styles'
 const CALENDAR = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
 
 export default function Calendar() {
-    const [days, setDays] = React.useState<any[]>(getDaysStyles());
-    const [startDate, setStartDate] = React.useState(0);
-    const [endDate, setEndDate] = React.useState(0);
+    const [days, setDays] = useState<any[]>(getDaysStyles());
+    const [startDate, setStartDate] = useState(0);
+    const [endDate, setEndDate] = useState(0);
 
     function getDaysStyles() {
         var basicStyles: any[] = [];
@@ -22,14 +22,14 @@ export default function Calendar() {
         return basicStyles;
     }
 
-    function handleCellClick(day: number) {
-        var arr;
+    const handleCellClick = (day: number) => {
+        var arr = [];
         if (endDate !== 0 || startDate === 0) {
             arr = getDaysStyles();
             arr[day - 1] = styles.cellCircle;
             setStartDate(day);
             setEndDate(0);
-        } else {
+        } else {       
             arr = days;
             if (startDate > day) {
                 arr[day - 1] = styles.startCellCircle;
@@ -37,7 +37,9 @@ export default function Calendar() {
                     arr[index] = styles.betweenCellCircle;
                 }
                 arr[startDate - 1] = styles.endCellCircle;
+                setStartDate(day);
                 setEndDate(startDate);
+
             } else {
                 arr[startDate - 1] = styles.startCellCircle;
                 for (let index = startDate; index < day - 1; index++) {
@@ -49,6 +51,13 @@ export default function Calendar() {
         }
         setDays(arr);
     }
+
+    useEffect(
+        () => {
+            console.log('Chosen start date: ', startDate);
+            console.log('Chosen end date: ', endDate);
+        }
+    );
 
     const tableHead = (
         <TableHead>
