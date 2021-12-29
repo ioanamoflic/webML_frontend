@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
 import{ Component, useContext, useEffect } from 'react';
 import AuthContext from './AuthContext';
+import images from "../api/hooks/images"
 
 function createData(name: string, size: string, result: string, link: string) {
     return {
@@ -19,20 +20,32 @@ function createData(name: string, size: string, result: string, link: string) {
     };
 }
 
-const rows = [
-    createData('iris.jpg', '5616 x 374', '98.76', 'shorturl.at/jsvL4'),
-    createData('altIris.jpg', '5616 x 374', '99.15', 'shorturl.at/jsvL4'),
-    createData('niciunIris.jpg', '5616 x 3744', '67.33', 'shorturl.at/jsvL4'),
-    createData('ultimulIris.jpeg', '5616 x 3744', '88.95', 'shorturl.at/jsvL4'),
-];
+// const rows = [
+//     createData('iris.jpg', '5616 x 374', '98.76', 'shorturl.at/jsvL4'),
+//     createData('altIris.jpg', '5616 x 374', '99.15', 'shorturl.at/jsvL4'),
+//     createData('niciunIris.jpg', '5616 x 3744', '67.33', 'shorturl.at/jsvL4'),
+//     createData('ultimulIris.jpeg', '5616 x 3744', '88.95', 'shorturl.at/jsvL4'),
+// ];
 
 export default function TablePage() {
     const [selected, setSelected] = React.useState<string[]>([""]);
+    const [rows, setRows] = React.useState([]);
+
     const authCtx = useContext(AuthContext);
     console.log("logged in"+authCtx);
+
+    useEffect(() => {
+        const data = async() => {
+            const data = await images.getImages();
+            const newImages = data.map((image: any) => createData(image.name, image.size, image.result, image.link));
+            setRows(newImages);
+        }
+        data();
+    });
+
     const selectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.checked) {
-            const newSelecteds = rows.map((n) => n.name);
+            const newSelecteds = rows.map((n: any) => n.name);
             setSelected(newSelecteds);
             return;
         }
@@ -78,7 +91,7 @@ export default function TablePage() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
+                    {rows.map((row: any) => (
                         <TableRow
                             key={row.name}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
