@@ -1,6 +1,7 @@
 import React, { ChangeEvent, Component } from "react";
 import Button from "@mui/material/Button"
 import { isJSDocNullableType, __String } from "typescript";
+import imageService from "../api/hooks/images";
 
 
 export default function ImagePage() {
@@ -14,16 +15,17 @@ export default function ImagePage() {
     }*/
     const [image, setImage] = React.useState<string>("");
     
-    const onImageChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const onImageChange = async (event: ChangeEvent<HTMLInputElement>) => {
        if (event&&event.target.files && event.target.files[0]) {
             let img = event.target.files[0];
-            
+            console.log(img)
             setImage(URL.createObjectURL(img))
-
+            let formData = new FormData()
+            formData.append('file', img)
+            console.log(formData)
+            await imageService.evaluate(formData);
         }
-
     };
-
 
     return (
         <div>

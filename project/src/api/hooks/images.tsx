@@ -14,9 +14,13 @@ const imageService = {
             throw error;
         }
     },
-    async evaluate(){
+    async evaluate(formData: FormData){
         try {
-            const resp = await axiosInstance.post("/images/evaluate");
+            const resp = await axiosInstance.post("/images/evaluate", formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                   }       
+            });
             return resp.data;
         } catch (error) {
             const err = error as AxiosError
